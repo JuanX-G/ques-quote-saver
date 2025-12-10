@@ -43,8 +43,25 @@ result_char_p_t err_char_p(const char* msg, int code) {
 	return ret_res;
 }
 
-result_char_p_t ok_char_p(const char* value) {
+result_char_p_t ok_char_p(char* value) {
 	result_char_p_t ret_res = {
+		.is_err = false,
+		.data.value = value,
+	};
+	return ret_res;
+}
+
+result_lines_t err_lines(const char* msg, int code) {
+	result_lines_t ret_res = {
+		.is_err = true,
+		.data.error.err_message = msg,
+		.data.error.code = code,
+	};
+	return ret_res;
+}
+
+result_lines_t ok_lines(lines_t value) {
+	result_lines_t ret_res = {
 		.is_err = false,
 		.data.value = value,
 	};
